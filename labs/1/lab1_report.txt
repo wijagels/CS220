@@ -1,0 +1,29 @@
+Name: William Jagels
+
+CS-220 Fall 2015 Lab 01 Report
+
+1. What are the advantages and disadvantages of a command line interface?
+    Disadvantages:
+        Steep learning curve
+        Makes people think you're a hacker
+        Dangerous if misused
+    Advantages:
+        Available on any POSIX compatible system
+        No restrictions on what you can and can't do
+        Standardized input and output
+        Easy to create pipelines
+        Can be used to automate monotonous tasks
+        Customizable and extensible
+        Can run headless
+
+2. Why did rmdir fail when there was a test.txt file in the junk directory?  Is this a good thing?
+    It failed because rmdir's purpose is to "remove empty directories".  This is a good thing because the command refuses to do more than what it's intended for.
+
+3. What does the "helloWorld" program you copy-pasta'd do?
+    It prints a message to standard output and then exits.
+
+4. What was the value of "argc" in gdb?  Why was argc this value?
+    It's 3.  argc is argument count.  The first argument is the run path and the other two are 'testing' and 'arguments' making a total of 3 elements.
+
+5. What was the value of "argv[1]" in gdb? Why was "argv[1]" this value?
+    "testing" because this is the first parameter passed to the program, which is located directly after the run path in argv.
