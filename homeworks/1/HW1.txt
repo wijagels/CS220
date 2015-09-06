@@ -1,0 +1,57 @@
+CS220 Week 1 Homework Due Sep. 08, 2015
+
+Name: William Jagels
+
+1. Given the following code:
+
+    unsigned char m_and = x & mask;
+    unsigned char m_or = x | mask;
+    unsigned char m_land = x && mask;
+    unsigned char m_lor = x || mask;
+
+   Complete the following table, representing each value in hexadecimal:
+   (the first row has been completed for you)
+
+         x  | mask |m_and| m_or |m_land|m_lor
+       -----+------|-----+------+------+------
+    a. 0x01 | 0xff | x01 | 0xff | 0x01 | 0x01
+    b. 0x08 | 0xf7 | x00 | 0xff | 0x01 | 0x01
+    c. 0xc7 | 0x00 | x00 | 0xc7 | 0x00 | 0x01
+    d. 0x0e | 0x01 | x00 | 0x0f | 0x01 | 0x01
+    e. 0x00 | 0x00 | x00 | 0x00 | 0x00 | 0x00
+
+ 2. Given the following code:
+
+    int x=-3;
+    long int y;
+    y=x;
+
+    a. What is the value of y in decimal?
+        -3
+    b. What is the value of y in hexadecimal?
+        0xfffffffd
+    c. Does padding on the left with the sign bit to increase precision change the value of a negative number?
+        If so, why?  If not, why not?
+        No, because left padding doesn't do anything in two's compliment as long as it's the sign bit.
+
+
+
+  3. Given the following code:
+
+    int x; int y; int s_sum;
+    unsigned int v; unsigned int w; unsigned int u_sum;
+
+    x=atoi(argc[2]);
+    y=atoi(argc[3]);
+    v=x;
+    w=y;
+    s_sum=x+y;
+    u_sum=v+w;
+    if (s_sum==u_sum) printf("Unsigned and signed are the same\n");
+    else printf("Unsigned and signed are different\n");
+
+     a. What do you expect to see printed for most values of argc[2] and argc[3]?
+
+     b. Are there any values of argc[2] and argc[3] which will result in "Unsigned and signed are different"?
+
+     c. If you changed "s_sum=x*y;" and "u_sum=v*w;" will you get the same results?
