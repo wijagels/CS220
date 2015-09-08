@@ -51,7 +51,12 @@ Name: William Jagels
     else printf("Unsigned and signed are different\n");
 
      a. What do you expect to see printed for most values of argc[2] and argc[3]?
+        Unsigned and signed are the same
 
      b. Are there any values of argc[2] and argc[3] which will result in "Unsigned and signed are different"?
+        Nope, the comparison turns the signed int into an unsigned.
 
      c. If you changed "s_sum=x*y;" and "u_sum=v*w;" will you get the same results?
+        Yes, same rules apply.
+
+/** Assuming that argc was supposed to be argv **/
