@@ -1,0 +1,24 @@
+Name: William Jagels
+
+CS-220 Fall 2015 Lab 02 Report
+
+1. What prevents the "factorial" function from invoking itself forever?
+    The if statement that returns 1 if the argument is 1.
+
+2. What is the largest number that you can use to compute a correct factorial using "char" as the returned value?  Why?
+    5 because 6! is larger than 127
+
+3. What is the largest number that you can use to compute a correct factorial using "unsigned char" as the returned value?
+        5 because 6! is larger than 255
+    Is this different from signed char?  If not, why not?  If so, why?
+        It's the same because 6! is larger than both the limits
+	
+4. What type of integer data allows factorial to return the largest correct result?  
+        unsigned long long int
+    What is the largest argument for which factorial returns a correct result using this type?
+        20
+
+5. What is the largest value for which this program can compute an exact and correct result?
+        25!
+	What type of data produces this largest value?
+        long double.  Perhaps __float128 will provide larger numbers, but I haven't been able to get it to work yet.

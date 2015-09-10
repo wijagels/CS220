@@ -25,14 +25,38 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-char * b64encode(char string[],int len) {
+int ipow(int base, int exp)
+{
+    int result = 1;
+    while (exp)
+    {
+        if (exp & 1)
+            result *= base;
+        exp >>= 1;
+        base *= base;
+    }
 
+    return result;
+}
+
+char * b64encode(char string[],int len) {
+    char bin[len*8];
     /* Your code to convert the input array of chars to a base64 string goes here */
     for(int k=0;k < len;++k) {
-        for (int i = 0; i < 8; i++) {
-            printf("%d", !!((string[k] << i) & 0x80));
+        printf("%d\n", string[k]);
+        for (int i = 0; i < 8; ++i) {
+            bin[k*8 + i] = !!((string[k] << i) & 0x80);
         }
     }
+    int sum = 0;
+    for(int j=0;j < len*8;++j) {
+        sum += ipow(2, bin[j] * 6- j%6);
+        if(j%6) sum = 0;
+        printf("\n%d", sum);
+    }
+    printf("\n");
 	b64Result[0]=0; // Make sure result is null terminated
 	return b64Result;
 }
+
+
