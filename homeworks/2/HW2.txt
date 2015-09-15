@@ -1,0 +1,55 @@
+CS220 Week 2 Homework Due Sep. 15, 2015
+
+Name: William Jagels
+
+1. Given the following code:
+    int x = -3;
+    int y = x/2;
+    int z = x>>1;
+
+   a. Will "y" and "z" have the same value?  If so, why? If not, why not?
+        Nope, integer division causes -3/2 to become -1 by dropping the .5.  Whereas a right shift rounds the other way, resulting in -2.
+
+   b. Is the statement "shifting to the right is the same as dividing by two" correct?
+        Not really. It works for positive numbers because of how rounding works, but not for negative odd numbers.
+
+2. Is there anything wrong with the following code?  If so, what is the problem?
+
+    int main(int argc,char **argv) {
+        int x=getFirst(23);
+        if (x==12) return 1;
+        return 0;
+    }
+    int getFirst(int st) {
+        return (st*124639 % 332167);
+    }
+
+        getFirst is implicitly declared, which angers C99.  Also, x will never equal 12, so the return 1 condition will never be reached.  This program accomplishes absolutely nothing.
+
+3. Is there anything wrong with the following C code?  If so, what is the problem?
+
+    int x=7;
+    int i=1;
+    x * (i++);
+
+        Yeah!  The 3rd line is silly.  The line has the same effect as simply putting i++;.  It will still compile though.
+
+4. Given the following invocation of a commmand generated from C code:
+
+    mycmd this is a test
+
+   What will be the values of:
+
+   a. argc
+        5
+   b. argv[1]
+        "this"
+
+5. Given the following C code:
+
+    int x=atoi(argv[1]);
+    int y=(x & -x);
+    if (x==y) printf("Wow... they are the same!\n");
+
+   What values of x will result in "Wow... they are the same!" getting printed?  Why?
+        Any positive powers of 2 will cause a 'Wow!'.  This is because the binary representation of a 2^n number is a single 1 followed by a bunch of zeros.  Flip the bits and add 1, and you get the same thing, except with a 1 in the sign bit.  So if you and the numbers together, the sign bit goes away but the single one is preserved.
