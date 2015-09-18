@@ -1,0 +1,30 @@
+Name: William Jagels
+
+CS-220 Fall 2015 Lab 03 Report
+
+1. The professor initialized the "root" variable to n/2.  Is this a good choice for the initial root?  Why?
+
+    It's good enough, since it should be as close as possible to the actual square root of n.  For small numbers this is pretty close.
+
+2. After you added the check to make sure root is not the same as prev_root, you still see messages that
+   print out "error=0.000000", and the program executes another iteration.  How can this be true?
+
+    Because the program comes up with the same number twice before it notices that the numbers are the same.
+
+3. By providing tolerance as an argument to your root function, you allow the user to provide a larger
+   tolerance in order to avoid extra iterations of calculation.  Under what conditions might this
+   feature be very important to a user of your root function?
+
+    This is useful for giant numbers that would take a longer time to estimate.
+
+4. Some students have suggested that the tolerance should be specified as a fraction of the original number
+   instead of as an absolute value.  For instance, if the tolerance were 0.001, then the root program would
+   iterate as long as error > 0.001 * n.  Which do you like better... tolerance as an absolute value, or
+   tolerance as a fraction of the original number?  Why?
+
+    Fractional tolerance would be more useful when numbers are very large, since having an error of .1 on a 2 digit number is more significant than an error of .1 on a 20 digit number.
+
+5. Were the number of iterations required to caclulate the square root of 28 to a very high accuray more or
+   less than you expected? Why did you expect more or less?
+
+    I expected more iterations, since the square root of 28 is an irrational number
