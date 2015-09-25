@@ -25,38 +25,43 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-int ipow(int base, int exp)
-{
-    int result = 1;
-    while (exp)
-    {
-        if (exp & 1)
-            result *= base;
-        exp >>= 1;
-        base *= base;
+int toPower(int b, int e) {
+    int s = 1;
+    for(int i = 0;i < e;i++) {
+        s *= b;
     }
-
-    return result;
+    return s;
 }
 
 char * b64encode(char string[],int len) {
     char bin[len*8];
     /* Your code to convert the input array of chars to a base64 string goes here */
     for(int k=0;k < len;++k) {
-        printf("%d\n", string[k]);
         for (int i = 0; i < 8; ++i) {
             bin[k*8 + i] = !!((string[k] << i) & 0x80);
+            // printf("%d", bin[k*8 + i]);
         }
     }
+
+    // for(int i =0;i<=6;i++) {
+    //     printf("%d : %d : %d\t", bin[i], 6- i%6, bin[i]*toPower(2, (6- i%6)));
+    // }
+
     int sum = 0;
-    for(int j=0;j < len*8;++j) {
-        sum += ipow(2, bin[j] * 6- j%6);
-        if(j%6) sum = 0;
-        printf("\n%d", sum);
+    int j = 0;
+    for(;j < len*8;++j) {
+        // printf("j%%6 = %d, %d += %d", j%6, sum, bin[j]*toPower(2, (5- j%6)));
+        sum +=  bin[j]*toPower(2, (5- j%6));
+        printf("%d", bin[j]);
+        if(j > 0 && j%6 == 0) {
+            b64Result[j/6 - 1] = base64[sum];
+            printf(" %d\t", sum);
+            sum = 0;
+        }
     }
     printf("\n");
-	b64Result[0]=0; // Make sure result is null terminated
-	return b64Result;
+    b64Result[j+1]=0; // Make sure result is null terminated
+    return b64Result;
 }
 
 
