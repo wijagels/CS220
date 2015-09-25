@@ -21,3 +21,6 @@ submit : $(SRC_FILES)
 	cp $(SRC_FILES) $(USER)_proj1
 	tar -cvzf $(USER)_proj1.tar.gz $(USER)_proj1
 	rm -r $(USER)_proj1
+
+exp: encode
+	./encode < example.txt
