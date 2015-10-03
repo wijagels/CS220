@@ -1,0 +1,53 @@
+CS-220 Fall 2015 Lab 05 report		Due: Oct. 2, 2015
+
+Name:
+
+For each program you debugged, list the bugs in that program, and how you fixed these bugs.
+The first bug in program 1 is described for you as an example.  Describe as many bugs and
+fixes as you found for each program.
+
+Program 1
+
+	Bug: Compiler warning: prog1.c:7:6: warning: unused variable ‘j’
+	Fix: Deleted the declaration of "j".
+
+	Bug: Operation on i may be undefined
+	Fix: Initialize i to one and change <= to <
+
+    Bug: Really big won't be printed
+    Fix: Switch order of first two if blocks
+
+    Bug: Segfault without args
+    Fix: Add if to return when argc too small
+
+Program 2
+
+	Bug: Passing in a big number or non-number for argv[1] causes infinite loop
+	Fix: add check for inc == 0
+
+    Bug: Negative value causes infinite loop
+    Fix: Check for > 0
+
+Program 3
+
+	Bug: Compiler error line 3 and 7
+	Fix: Remove illegal ; line 3
+
+    Bug: Huge numbers cause segfault
+    Fix: add check for i > max
+
+    Bug: Stack smashing
+    Fix: Get rid of the string[] variable, it's useless.
+
+Program 4
+
+	Bug: = instead of ==
+	Fix: replaced = with ==
+
+    Bug: Wrong letter being replaced
+    Fix: Replace ++i with i++
+
+Program 5
+
+	Bug: Wrong value
+	Fix: Put braces around suspiciously mis-indented if block

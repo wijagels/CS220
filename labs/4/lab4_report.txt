@@ -1,0 +1,34 @@
+Name: William Jagels
+
+CS-220 Fall 2015 Lab 04 Report Due Sept 25, 2015
+
+1. The professor passed the inputMsg array of characters in to the listWords function as the first argument. The
+   listWords function then modifies the inputMsg array of characters by replacing non-alphabetic characters with
+   null terminators.  However, we have been taught that C does not allow you to modify the value of parameters
+   because you get a copy of the argument value... not the argument itself.  Why does this work?
+
+    Because it's not being passed by value, it's being passed by reference.
+
+2. The compareWords function is passed in parameters that consist of pointers to characters, but inside the function, these parameters are used as if they are arrays.  Why is this legal in C?
+
+    Because it's a null terminated list, so you can still access it with array syntax.
+
+3. Rewrite the compareWords function so that it uses character pointers instead of arrays in the body of the function.
+
+int compareWords(char *w1,char *w2) {
+    while(w1!=NULL) {
+        if (w1!=w2) return 0;
+        *w1++;
+        *w2++;
+    }
+    if (w2==NULL) return 1;
+    return 0;
+}
+
+4. Is it easier to read compareWords when it is written using array notation, or using pointer notation as in 3?
+   Why?
+
+    Yes because it clearly shows the relationship of the two strings, since they have the same [index] when they're compared.
+
+5. What is the standard library function that performs almost exactly the same function as compareWords?  What does that function return when the two input words are the same?  What does it return when they are different?
+    strcmp returns 0 when they're the same and not zero when they're different.

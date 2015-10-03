@@ -1,0 +1,51 @@
+CS220 Week 4 Homework Due Sep. 27, 2015
+
+Name: William Jagels
+
+1. Given the following C code:
+    int x = 1000000001;
+    float fx=x;
+    if (x==fx) printf("x and fx are the same");
+    else printf("x and fx are different");
+
+   ... what will get printed?  Why?
+
+        x and fx are the same because the float will be cast to an integer for comparison
+
+2. Given the following C code:
+    float frac=foo();
+    float base=bar();
+    int percent=100*frac/base+0.5;
+
+   a) If foo() returns the value 5.56 and bar() returns the value 20.0, what will the value of percent be?
+        28
+   b) Why did the programmer add 0.5 to the expression used to calculate percent?
+        To round up the number
+
+3. Given the following C code:
+    int func(char a[],char b[]) {
+        while((*a)) if (*a++)!=(*b++)) return 0;
+        if ((*b)) return 0;
+        return 1;
+    }
+
+   a) What will func("string 1","string 1") return?
+        1
+   b) What will func("string 1","string") return?
+        0
+   c) What does func do?
+        Tests if 2 char arrays are exactly equal
+
+ 4. Are the following statements true or false...
+
+    a) _T_ I can always debug my code using printfs
+        Sure, you can print whatever you want in C.
+
+    b) _F_ In gdb, if I type "n", and hit enter twice, I will execute exactly two C statements
+        Does not go into functions.
+
+    c) _F_ In gdb, if I type "b 21 if (i>20)", then gdb will stop the next time I execute line 21
+        Only if i is greater than 20
+
+    d) _T_ In gdb, if I type "p myfn(x*3)", where x is a variable and myfn is a function in my
+        code, then gdb will print out the return value of myfn.

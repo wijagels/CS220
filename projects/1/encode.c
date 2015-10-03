@@ -1,6 +1,7 @@
 #include "base64.h"
 #include <stdio.h>
 #include <assert.h>
+#define debug 0
 
 char * b64encode(char string[],int len);
 static char b64Result[MAX_MSG_LENGTH];
@@ -38,35 +39,31 @@ int toPower(int b, int e) {
 char * b64encode(char string[],int len) {
     /* Your code to convert the input array of chars to a base64 string goes here */
     unsigned char quad[4];
+    int pads = 0;
     while(len % 3 != 0) {
         len++;
+        pads++;
     }
     for(int i=0;i<len;i+=3) {
-        printf("%c", string[i+1]);
-        printbincharpad(string[i+1] << 0);
-        printf("%c", string[i+2]);
-        printbincharpad(string[i+2] >> 0);
+        // printf("%c", string[i]);
+        // printbincharpad(string[i] << 4);
+        // printf("%c", string[i+1]);
+        // printbincharpad(string[i+1] >> 4);
         quad[0] = string[i] >> 2;
-        quad[1] = ((string[i] << 6) | string[i+1] >> 2) >> 2 & 0x3F;
+        quad[1] = ((string[i] << 4) | string[i+1] >> 4) & 0x3F;
         quad[2] = ((string[i+1] << 2) | string[i+2] >> 6) & 0x3F;
         quad[3] = string[i+2] & 0x3F;
-        printf("%d, %d, %d, %d\n", quad[0], quad[1], quad[2], quad[3]);
-        printbincharpad(quad[0]);
-        printbincharpad(quad[1]);
-        printbincharpad(quad[2]);
-        printbincharpad(quad[3]);
+        if(debug) printf("%c, %c, %c\n", string[i], string[i+1], string[i+2]);
+        if(debug) printf("%d, %d, %d, %d\n", quad[0], quad[1], quad[2], quad[3]);
+        if(debug) printf("%c, %c, %c, %c\n", base64[quad[0]], base64[quad[1]], base64[quad[2]], base64[quad[3]]);
+        for(int j=0;j<4;j++) {
+            // if(quad[j] == 0)
+            //     b64Result[i*4/3+j] = base64Pad;
+            b64Result[i*4/3+j] = base64[quad[j]];
+        }
+        for(int p=0;p <= pads;p++) {
+            b64Result[len*4/3-p] = '=';
+        }
     }
-    printf("\n");
-    b64Result[0]=0; // Make sure result is null terminated
     return b64Result;
 }
-
-void printbincharpad(char c)
-{
-    for (int i = 7; i >= 0; --i)
-    {
-        putchar( (c & (1 << i)) ? '1' : '0' );
-    }
-    putchar('\n');
-}
-
