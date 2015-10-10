@@ -1,0 +1,17 @@
+CS-220 Fall 2015 Lab 06 report		Due: Oct. 9, 2015
+
+Name: William Jagels
+
+1. What order did the values get printed when you invoked prPrefix?
+    10 12 14 16 17 18 21 22 34 52
+2. What order did the values get printed when you invoked prInfix?
+    10 21 17 12 14 16 18 52 22 34
+3. What order did the values get printed when you invoked prPostfix?
+    21 17 12 14 16 18 52 22 34 10
+4. The "depth" of a binary tree is the largest number of nodes between the root of the tree
+   and any leaf of the tree.  If "n" random values are inserted in the tree, what would you expect
+   the depth of the tree to be.
+    log(n)
+5. If you insert "n" values into a binary tree, what is the largest depth you could have?
+   What must be true about the order of the input values to acheive this depth?
+    n, each number must be greater than, or less than the last.
