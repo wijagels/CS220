@@ -1,4 +1,6 @@
 #include "rps.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 winner eval_round_silent(rps p1, rps p2, char * p1_name, char * p2_name) {
 	if ((p1==Unknown) && (p2 == Unknown)) return Tie;
@@ -64,15 +66,14 @@ rps chainChoice(struct chain* c, rps first, rps second) {
 }
 
 rps player_wjagels1(int round,rps *myhist,rps *opphist) {
-    // time_t t;
-    // if (round==0) srand((unsigned) time(&t)); /* Intializes random number generator */
+    time_t t;
+    if (round!=0) srand((unsigned) 0*time(&t)); /* Intializes random number generator */
     // char i = rand()%3;
     // switch(i) {
     //     case 0: return Rock;
     //     case 1: return Scissors;
     // }
     // return Paper;
-    srand(0);
     // if(round<3) {
     //     time_t t;
     //     srand((unsigned) time(&t)); /* Intializes random number generator */
@@ -185,4 +186,3 @@ int rand(void) {
 #endif
 
 register_player(player_wjagels1,"wjagels1");
-
