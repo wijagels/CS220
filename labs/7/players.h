@@ -4,3 +4,4 @@
 #include "player_random.c"
 
 #include "player_wjagels1.c"
+#include "player_wjagels1_win.c"

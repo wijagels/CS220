@@ -168,9 +168,9 @@ rps player_wjagels1(int round,rps *myhist,rps *opphist) {
     }
 
     // If one has a 100% win rate, keep it up!
-    if(rate[0]/chosen[0] == 1) return Rock;
-    if(rate[1]/chosen[1] == 1) return Paper;
-    if(rate[2]/chosen[2] == 1) return Scissors;
+    if(chosen[0] && rate[0]/chosen[0] == 1) return Rock;
+    if(chosen[1] && rate[1]/chosen[1] == 1) return Paper;
+    if(chosen[2] && rate[2]/chosen[2] == 1) return Scissors;
 
     return me;
 }
