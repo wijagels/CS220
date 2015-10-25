@@ -1,0 +1,77 @@
+CS220 Week 7 Homework Due Oct. 18
+
+Name: William Jagels
+
+1. Are the following statements about Instruction Set Architectures True or False:
+
+    a. True Machines that support an ISA provide the interface that implements that ISA
+    
+    b. False A machine can only support a single ISA
+    
+    c. True Any machine that supports x86-32 also supports x86-16.
+    
+    d. True Instructions in a CISC architecture can be executed directly by the hardware.
+        If microcode still counts as direct, yes.
+    
+    e. True Many different machines support the x86-32 ISA.
+    
+    f. True An operating system whcih runs on the x86-32 ISA cannot run on a machine that
+            does not support the x86-32 ISA
+            
+2.  Given the following register and memory values...
+
+        Reg | Value             Address     | Value
+        ----+-----------        --------+---------------
+        eax | x0000 0003        xCA00 01D4  | xFFFF FFFF
+        ebx | x0000 004A        xCA00 01D0  | x0000 0000
+        ... | ...               xCA00 01CC  | x6400 0000
+        ebp | xCA00 1C00        xCA00 01C8  | xC800 0000
+        esp | xCA00 01BC        xCA00 01C4  | xB32C 302A
+                                xCA00 01C0  | xCA00 0208
+                                xCA00 01BC  | x0300 0000
+                        
+    What will be in the eax register after the execution of each instruction below...
+        Assuming ebp is a typo and should be xCA00 01C0
+    
+    a.  movl  8(%ebp),%eax
+        xC800 0000
+    
+    b.  addl  12(%ebp),%eax
+        x12C0 0000
+    
+    c.  shrl  $2,eax
+        x04B0 000
+   
+    
+3.  Given the following x86 Assembler code:
+
+            cmpl    8(%ebp),$100
+            jle L21
+            addl    $1,8(%ebp)
+            jmp L22
+        L21 subl    $1,8(%ebp)
+        L22 movl    8(%ebp),%eax
+            …   
+            
+    Which of the following C code best represents the above assembler?
+        E.
+    
+    /a.  while(arg1<100) { arg1++; }
+        arg1--;
+        x = arg1;
+
+    b.  for(arg1=100; arg<=100; arg1++) { arg1--; }
+        x = arg1;
+
+    /c.  if (arg1>100) arg1++;
+        else arg1--;
+        x = arg1;
+
+    /d.  do { arg1--} while(arg1>100);
+        arg1++;
+        x = arg1;
+
+    e.  if (arg1<=100) arg1++;
+        else arg1--;
+        x = arg1;
+    
