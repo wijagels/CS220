@@ -1,0 +1,4 @@
+# This is my gdb command file
+# 1. Look for a function name to prevent death
+info functions 
+run

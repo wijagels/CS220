@@ -1,0 +1,23 @@
+CS-220 Fall 2015 Lab 08 report		Due: Oct. 23, 2015
+
+Name: William Jagels
+
+1. What level of GDB have you reached...
+	___ Getting Debug Badly
+	___ Got Debug Basics
+	_x_ Growing Developping Beginner
+	___ Getting Dastardly Bugs
+	___ Grandiose Destroyer of Bull-droppings
+	___ Greatest Debugger But...
+	___ Richard Stallman
+
+2. What gdb command would you use to display the first four 4 byte hexidecimal values
+   starting at the top of the stack?
+    x/4aw $ebp
+3. What gdb command would you use to determine the size of the current stack frame in bytes?
+    p $ebp-$esp
+4. Would your job have been easier if "wumpus" was compiled with debug turned on?
+    Yeah, because then you'd have information about lines
+5. Were you surprised at how much information you could figure out about the wumpus executable
+   even though debug was not turned on?  Is knowledge of X86 useful?
+    Yup, now it's time to debug proprietary software.  x86 seems extremely useful for reverse engineering.
