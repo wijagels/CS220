@@ -45,34 +45,52 @@ int normalize(char *r) {
 	return ret;
 }
 
+/**
+ * How to make this not so inefficient:
+ * LinkedLists aren't the best data structure
+ * for this, a tree would allow log(n) insertions.
+ * Or, with a simple array, binary searches could
+ * be used to also acheive log(n) insertion.
+ * Using a linked list locks you in to O(n), but
+ * some level of caching may improve real world
+ * performance.  For example, knowing the size of the
+ * list and storing pointers to midpoints would
+ * improve performance at the expense of memory.
+ * When using this on very large real world text,
+ * it would be useful to store pointers to the most
+ * popular words (the, and, a, etc.) because access
+ * to these words in constant time would significantly
+ * improve performance in a text with enough unique
+ * words.  Even with all this magic, a tree will
+ * outperform the linkedlist.
+ */
 lnode insertWord(char * word, lnode head) {
 	/* Your code to insert a word in the linked list goes here */
-    if(!head) {
-        return makeLnode(word);
+    if(!head) return makeLnode(word);
+    lnode node = head;
+    lnode prev = node;
+    if(isGreater(word, node->value) == -1) {
+        head = makeLnode(word);
+        head->next = node;
+        return head;
     }
-    lnode headcp, prev;
-    headcp = head;
-    prev = head;
-    while(head->next) {
-        short comp = isGreater(word, head->value);
-        if(comp == -1) {
-            printf("%s is smaller than %s\n", word, head->value);
+    while(node) {
+        if(isGreater(word, node->value) == -1) {
             prev->next = makeLnode(word);
-            prev->next->next = head;
-            return headcp;
+            prev->next->next = node;
+            return head;
         }
-        if(comp == 0) {
-            head->count++;
-            return headcp;
+        if(isGreater(word, node->value) == 0) {
+            node->count++;
+            return head;
         }
-        if(comp == 1) {
-            printf("%s is greater than %s\n", word, head->value);
-            prev = head;
-            head = head->next;
+        if(isGreater(word, node->value) == 1) {
+            prev = node;
+            node = node->next;
         }
     }
-head->next = makeLnode(word);
-return headcp;
+    prev->next = makeLnode(word);
+    return head;
 }
 
 int isGreater(char *s1,char *s2) {
