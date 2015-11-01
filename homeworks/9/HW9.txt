@@ -1,0 +1,54 @@
+CS220 Week 9 Homework Due Nov. 01
+
+Name: William Jagels
+
+Assign one of the following labels...
+
+	A. Preparing to start a function
+	B. Preparing to invoke a function
+	C. Returning from a function invocation
+	D. Return to my caller
+	E. None of the above (implementation of non-call instructions)
+
+... To each of the following sections of code which uses IA-32 X86 calling conventions.
+
+1.	movl	12(%ebp), %eax
+	movl	%eax, 4(%esp)
+	movl	8(%ebp), %eax
+	movl	%eax, (%esp)
+
+	C. Returning from a function invocation
+
+2.	movl	8(%ebp), %eax
+	addl	$4824, %esp
+	popl	%ebx
+	popl	%esi
+	popl	%ebp
+	ret
+
+    D. Return to my caller
+
+3.	movl	12(%ebp), %eax
+	movl	%eax, %edx
+	sarl	$31, %edx
+	idivl	8(%ebp)
+	movl	%eax, -24(%ebp)
+	fildl	-24(%ebp)
+	fstps	-12(%ebp)
+
+	E. None of the above (implementation of non-call instructions)
+
+4.	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%esi
+	pushl	%ebx
+	subl	$4824, %esp
+	movl	$0, -16(%ebp)
+	movl	$0, -12(%ebp)
+	movl	$0, -16(%ebp)
+
+	B. Preparing to invoke a function
+
+5. 	movl	%eax, %edx
+
+	A. Preparing to start a function

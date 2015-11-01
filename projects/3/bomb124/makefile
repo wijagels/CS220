@@ -1,0 +1,2 @@
+test:
+	./bomb in.txt

@@ -1,0 +1,114 @@
+CS220 Week 8 Homework Due Oct. 25
+
+Name: William Jagels
+
+Assume, like in the x86 lectures, there is C code that resulting in X86 assembler.
+As in the lectures, we can assume the C code is inside a function something like:
+
+    int myfunc(int a, int b) {
+        int c;
+        ...
+    }
+
+This will result in a symbol table for the compiler that looks like...
+
+    Symbol  Type    X86 Reference
+    ------- -----   -------------
+    a       int     A
+    b       int     B
+    c       int     C
+
+For each of the five following sections of X86 code, see if you can figure out what
+the C code was that caused the compiler to generate the X86 code...
+
+1.      jmp .L4
+    .L5:
+        movl    A, %eax
+        subl    %eax, B
+        addl    $1, C
+    .L4:
+        movl    A, %eax
+        cmpl    B, %eax
+        jl  .L5
+
+2.      cmpl    $8, A
+        jle .L2
+        movl    B, %eax
+        addl    $2, %eax
+        movl    %eax, C
+        subl    $2, A
+        jmp .L3
+    .L2:
+        movl    A, %eax
+        addl    $2, %eax
+        movl    %eax, C
+        subl    $2, B
+    .L3:
+
+3.      cmpl    $5, A
+        ja  .L8
+        movl    A, %eax
+        sall    $2, %eax
+        movl    .L15(%eax), %eax
+        jmp *%eax
+    .L15:
+        .long   .L9
+        .long   .L10
+        .long   .L11
+        .long   .L12
+        .long   .L13
+        .long   .L14
+    .L9:
+        movl    A, %eax
+        movl    %eax, B
+        jmp .L16
+    .L10:
+        movl    A, %eax
+        addl    $2, %eax
+        movl    %eax, B
+        jmp .L16
+    .L11:
+        movl    A, %eax
+        addl    $3, %eax
+        movl    %eax, B
+        jmp .L16
+    .L12:
+        movl    A, %eax
+        addl    $5, %eax
+        movl    %eax, B
+        jmp .L16
+    .L13:
+        movl    A, %eax
+        addl    $7, %eax
+        movl    %eax, B
+        jmp .L16
+    .L14:
+        movl    A, %eax
+        addl    $11, %eax
+        movl    %eax, B
+        jmp .L16
+    .L8:
+        movl    C, %eax
+        movl    %eax, B
+    .L16:
+
+
+4.      movl    $2, C
+        jmp .L6
+    .L7:
+        movl    B, %eax
+        andl    %eax, A
+        sarl    B
+        addl    $1, C
+    .L6:
+        cmpl    $15, C
+        jle .L7
+
+5.      cmpl    $0, A
+        je  .L17
+        movl    B, %eax
+        jmp .L18
+    .L17:
+        movl    $12, %eax
+    .L18:
+        movl    %eax, C

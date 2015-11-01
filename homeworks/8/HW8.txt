@@ -1,0 +1,167 @@
+CS220 Week 8 Homework Due Oct. 25
+
+Name: William Jagels
+
+Assume, like in the x86 lectures, there is C code that resulting in X86 assembler.
+As in the lectures, we can assume the C code is inside a function something like:
+
+    int myfunc(int a, int b) {
+        int c;
+        ...
+    }
+
+This will result in a symbol table for the compiler that looks like...
+
+    Symbol  Type    X86 Reference
+    ------- -----   -------------
+    a       int     8(%ebp)
+    b       int     12(%ebp)
+    c       int     -4(%ebp)
+
+For each of the five following sections of X86 code, see if you can figure out what
+the C code was that caused the compiler to generate the X86 code...
+
+1.      jmp .L4
+    .L5:
+        movl    8(%ebp), %eax
+        subl    %eax, 12(%ebp)
+        addl    $1, -4(%ebp)
+    .L4:
+        movl    8(%ebp), %eax
+        cmpl    12(%ebp), %eax
+        jl  .L5
+
+        if(b < a) {
+            b -= a;
+            ++c;
+        }
+        while(b < a) {
+            b -= a;
+            ++c;
+        }
+
+2.      cmpl    $8, 8(%ebp)
+        jle .L2
+        movl    12(%ebp), %eax
+        addl    $2, %eax
+        movl    %eax, -4(%ebp)
+        subl    $2, 8(%ebp)
+        jmp .L3
+    .L2:
+        movl    8(%ebp), %eax
+        addl    $2, %eax
+        movl    %eax, -4(%ebp)
+        subl    $2, 12(%ebp)
+    .L3:
+
+    if(a > 8) {
+        c = b+2;
+        a -= 2;
+    }
+    else {
+        c = a+2;
+        b -= 2;
+    }
+
+
+3.      cmpl    $5, 8(%ebp)
+        ja  .L8
+        movl    8(%ebp), %eax
+        sall    $2, %eax
+        movl    .L15(%eax), %eax
+        jmp *%eax
+    .L15:
+        .long   .L9
+        .long   .L10
+        .long   .L11
+        .long   .L12
+        .long   .L13
+        .long   .L14
+    .L9:
+        movl    8(%ebp), %eax
+        movl    %eax, 12(%ebp)
+        jmp .L16
+    .L10:
+        movl    8(%ebp), %eax
+        addl    $2, %eax
+        movl    %eax, 12(%ebp)
+        jmp .L16
+    .L11:
+        movl    8(%ebp), %eax
+        addl    $3, %eax
+        movl    %eax, 12(%ebp)
+        jmp .L16
+    .L12:
+        movl    8(%ebp), %eax
+        addl    $5, %eax
+        movl    %eax, 12(%ebp)
+        jmp .L16
+    .L13:
+        movl    8(%ebp), %eax
+        addl    $7, %eax
+        movl    %eax, 12(%ebp)
+        jmp .L16
+    .L14:
+        movl    8(%ebp), %eax
+        addl    $11, %eax
+        movl    %eax, 12(%ebp)
+        jmp .L16
+    .L8:
+        movl    -4(%ebp), %eax
+        movl    %eax, 12(%ebp)
+    .L16:
+
+    switch(a) {
+        case 9:
+            b = a;
+            break;
+        case 10:
+            b = a + 2;
+            break;
+        case 11:
+            b = a + 3;
+            break;
+        case 12:
+            b = a + 5;
+            break;
+        case 13:
+            b = a + 7;
+            break;
+        case 14:
+            b = a + 11;
+            break;
+        default:
+            b = c;
+    }
+
+4.      movl    $2, -4(%ebp)
+        jmp .L6
+    .L7:
+        movl    12(%ebp), %eax
+        andl    %eax, 8(%ebp)
+        sarl    12(%ebp)
+        addl    $1, -4(%ebp)
+    .L6:
+        cmpl    $15, -4(%ebp)
+        jle .L7
+
+        for(c=2;c<=15;++c) {
+            b &= a;
+            b >>= 1;
+        }
+
+5.      cmpl    $0, 8(%ebp)
+        je  .L17
+        movl    12(%ebp), %eax
+        jmp .L18
+    .L17:
+        movl    $12, %eax
+    .L18:
+        movl    %eax, -4(%ebp)
+
+        if(a) {
+            c = b;
+        }
+        else {
+            c = 12;
+        }
