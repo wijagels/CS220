@@ -17,7 +17,7 @@ Assign one of the following labels...
 	movl	8(%ebp), %eax
 	movl	%eax, (%esp)
 
-	C. Returning from a function invocation
+	B. Preparing to invoke a function
 
 2.	movl	8(%ebp), %eax
 	addl	$4824, %esp
@@ -26,7 +26,7 @@ Assign one of the following labels...
 	popl	%ebp
 	ret
 
-    D. Return to my caller
+	C. Returning from a function invocation
 
 3.	movl	12(%ebp), %eax
 	movl	%eax, %edx
@@ -47,8 +47,8 @@ Assign one of the following labels...
 	movl	$0, -12(%ebp)
 	movl	$0, -16(%ebp)
 
-	B. Preparing to invoke a function
+	A. Preparing to start a function
 
 5. 	movl	%eax, %edx
 
-	A. Preparing to start a function
+	D. Return to my caller
