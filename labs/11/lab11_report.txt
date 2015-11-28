@@ -1,0 +1,24 @@
+CS-220 Fall 2015 Lab 11 report		Due: Nov. 13, 2015
+
+Name: William Jagels
+
+1. Can you tell from target.asm.txt how far buffer is from the top of getString's stack frame?
+   How far is it?
+    With objdump -d
+    0x59 bytes
+
+2. Once you get to the top of the stack frame, what else do you have to account for before you get
+   to the return address in the stack?
+    %ebp - 4 bytes on a 32 bit compiler
+
+3. Notice that the target function in target.c ends with an "exit(0)" invocation.  If this had been
+   "return false" instead, would your buffers overflow attack worked?  Would you see any other
+   problems?
+    This creates a problem, because %eip is not initialized for target's frame.  This will cause a segfault when it tries to return to 0x0.  The buffer overflow will still work though, printing the Whopee message and then promptly crashing.
+
+4. This buffer overflow attack provided a target function for you to run.  Does that simplify the
+   buffer overflow attack problem?
+    Yes, because otherwise you'd have to insert code somehow and link it with the code to be attacked.
+
+5. If target.c had used fgets instead of gets, would your buffer overflow attack have been succesful?
+    No, the entire point of fgets is to avoid this problem.

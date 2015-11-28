@@ -1,0 +1,20 @@
+CS-220 Fall 2015 Lab 10 report		Due: Nov 06, 2015
+
+Name: William Jagels
+
+1. What is the deepest level of stack frame nesting that occured in the factorial program?
+    6 levels of nesting.
+
+2. What information can you derive from a dump of the fact function's stack frame?
+    Local variables, the previous frame, and the caller's return address.
+
+3. When you printed the entire stack, it included main's frame, including the value of the first
+   parameter to main.  What value does this parameter have, and why?
+    1 because argc is always 1 when no additional arguments are passed
+
+4. Can you think of any good ways to improve the printout of the stack frame information?  If so, how?
+    Enclose the stack in lines so separate copies of the stack are more clearly separated.
+
+5. Can you think of any other reason for using the capability for C to access or use information or
+   instructions at the X86 level? If so, describe what you would do in a sentance or two.
+    If a programmer thinks they can write better code than the compiler, they can do it.  Or, if it's a device driver, sometimes it's important to have full control over what's in the registers or how things are executed.

@@ -1,0 +1,19 @@
+CS-220 Fall 2015 Lab 12 report      Due: Nov. 20, 2015
+
+Name: William Jagels
+
+Complete the following table.
+
+The "Type of Error" column should have one of the following values...
+    A. Leak - Malloc'ed memory that is not free'd
+    B. Stale - Reading or Writing memory that has been free'd
+    C. Rogue - Reading or Writing memory that has neither been malloc'ed nor freed
+    D. None of the above.
+
+File    |Type of Error  | Fix (What did you have to do to the code to fix the problem)
+--------+---------------+------------------------------------------------------------
+bug_1.c | Leak          | Add free(mynumbers); before return and fix buffer overrun at line 15
+bug_2.c | Leak          | Change check for next to check for just root at line 63
+bug_3.c | Stale         | Clobber line 29
+bug_4.c | Rouge         | Remove pointless + 3 at line 57
+bug_5.c | Rouge         | Change mynumbers array size to 11
