@@ -1,3 +1,3 @@
 set disassemble-next-line on
 b getUserLine
-run <test.txt
+run <ll.hex
